@@ -45,7 +45,7 @@ This project uses a monorepo-like structure with two distinct applications:
     npm install
     cp .env.example .env # Create a .env file
     ```
-    -   Ensure `REACT_APP_API_URL` in `client/.env` is set to `http://localhost:3001/api`.
+    -   Ensure `REACT_APP_API_URL` in `client/.env` is set to `http://localhost:3000/api`.
 4.  **Run the application**:
     -   From the root directory, run `npm install` to install `concurrently`.
     -   Then run `npm run dev` to start both servers."# SQL-Query-optimzer" 
