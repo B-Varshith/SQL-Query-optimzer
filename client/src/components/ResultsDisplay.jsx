@@ -5,7 +5,6 @@ const ResultsDisplay = ({ results, error, isLoading }) => {
 
   useEffect(() => {
     if (results && results["QUERY PLAN"]) {
-      // Animate items appearing one by one
       setVisibleItems([]);
       results["QUERY PLAN"].forEach((item, index) => {
         setTimeout(() => {
