@@ -1,33 +1,39 @@
-# SQL Query Optimizer
+# PostgreSQL Query Optimizer
 
 A full-stack web application that analyzes PostgreSQL queries and provides performance insights and a visual query plan.
 
 ## Description
 
-This tool allows developers and database administrators to paste a SQL query, execute it against a connected PostgreSQL database, and receive an `EXPLAIN ANALYZE` plan. The application visualizes the JSON plan in an interactive tree and provides simple, human-readable insights to help identify performance bottlenecks, such as slow Sequential Scans.
+This tool allows developers and database administrators to paste a SQL query, execute it against a connected PostgreSQL database, and receive an `EXPLAIN ANALYZE` plan. The application visualizes the JSON plan in an interactive tree and provides simple, human-readable insights to help identify performance bottlenecks.
 
 ## Features
 
 -   **Full-Stack Architecture**: Decoupled React frontend and Node.js/Express backend API.
 -   **Interactive Query Plan**: Renders complex JSON plans in a user-friendly, collapsible tree view.
--   **Performance Insights**: The backend analyzes the query plan to provide actionable advice (e.g., warning about Sequential Scans).
--   **CORS Enabled**: Securely handles cross-origin requests between the frontend and backend.
--   **Environment-Based Configuration**: Uses `.env` files for secure management of database credentials and API URLs.
+-   **Secure Analysis**: Uses database transactions to safely run `EXPLAIN ANALYZE` without permanently modifying data.
+-   **Modern UI**: Dark mode interface with syntax highlighting for SQL.
+-   **Environment-Based Configuration**: Uses `.env` files for secure management of database credentials.
 
 ## 🛠️ Tech Stack
 
--   **Frontend**: React.js, `react-json-view`
--   **Backend**: Node.js, Express.js
--   **Database**: PostgreSQL (`pg` library)
--   **Deployment**: Frontend on Netlify, Backend on Render.
+-   **Frontend**: React.js, Vite, `react-simple-code-editor`, `prismjs`, `react-json-view`
+-   **Backend**: Node.js, Express.js, `pg` (node-postgres)
+-   **Testing**: Jest, Supertest
 
 ## 📂 Project Structure
 
-This project uses a monorepo-like structure with two distinct applications:
-
--   `/client`: The Create React App frontend.
+-   `/client`: The React frontend (Vite).
+    -   `src/components`: Reusable UI components (`QueryInput`, `QueryResults`).
 -   `/server`: The Node.js/Express backend API.
--   The root folder contains a `package.json` with a `concurrently` script to run both for local development.
+    -   `src/controllers`: Business logic for handling requests.
+    -   `src/routes`: API route definitions.
+    -   `src/middleware`: Error handling and other middleware.
+    -   `tests`: Integration tests.
+
+## 🔒 Security
+
+To ensure safety when running arbitrary queries:
+-   **Transaction Rollback**: Every analysis request is wrapped in a database transaction (`BEGIN` ... `ROLLBACK`). This ensures that even if a user submits an `INSERT`, `UPDATE`, or `DELETE` query, the changes are **never committed** to the database.
 
 ## ⚙️ Local Setup
 
@@ -43,9 +49,16 @@ This project uses a monorepo-like structure with two distinct applications:
     ```bash
     cd ../client
     npm install
-    cp .env.example .env # Create a .env file
     ```
-    -   Ensure `REACT_APP_API_URL` in `client/.env` is set to `http://localhost:3000/api`.
 4.  **Run the application**:
-    -   From the root directory, run `npm install` to install `concurrently`.
-    -   Then run `npm run dev` to start both servers."# SQL-Query-optimzer" 
+    -   **Backend**: `cd server && npm run dev`
+    -   **Frontend**: `cd client && npm run dev`
+
+## 🧪 Running Tests
+
+To run the backend integration tests:
+
+```bash
+cd server
+npm test
+```
