@@ -5,8 +5,8 @@ import MetricsCard from './MetricsCard';
 const QueryResults = ({ plan, error }) => {
     if (error) {
         return (
-            <div className="error-container">
-                <h3>Error</h3>
+            <div className="bg-red-900/10 border border-red-400 text-red-400 p-4 rounded-lg">
+                <h3 className="font-bold mb-2">Error</h3>
                 <p>{error}</p>
             </div>
         );
@@ -20,8 +20,8 @@ const QueryResults = ({ plan, error }) => {
     const totalCost = plan['Plan'] ? plan['Plan']['Total Cost'] : 0;
 
     return (
-        <div className="results-container">
-            <div className="metrics-summary">
+        <div className="bg-gray-900 p-5 rounded-lg shadow-lg">
+            <div className="flex gap-4 mb-5 flex-wrap">
                 <MetricsCard
                     label="Execution Time"
                     value={executionTime.toFixed(3)}
@@ -45,7 +45,7 @@ const QueryResults = ({ plan, error }) => {
                 />
             </div>
 
-            <h3>Query Execution Plan</h3>
+            <h3 className="mt-0 text-teal-400 font-semibold mb-4">Query Execution Plan</h3>
             <div className="json-view-wrapper">
                 <ReactJson
                     src={plan}

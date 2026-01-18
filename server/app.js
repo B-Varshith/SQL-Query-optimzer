@@ -15,6 +15,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', require('./src/routes/authRoutes'));
+app.use('/api/credentials', require('./src/routes/credentialRoutes'));
 app.use('/api', analyzeRoutes);
 
 app.get('/', (req, res) => {

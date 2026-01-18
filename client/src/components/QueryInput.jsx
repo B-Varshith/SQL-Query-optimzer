@@ -6,8 +6,8 @@ import 'prismjs/themes/prism-tomorrow.css'; // Dark theme
 
 const QueryInput = ({ query, setQuery, onAnalyze, loading }) => {
   return (
-    <div className="query-input-container">
-      <div className="editor-wrapper">
+    <div className="flex flex-col gap-5">
+      <div className="border border-gray-800 rounded-lg overflow-hidden shadow-lg">
         <Editor
           value={query}
           onValueChange={code => setQuery(code)}
@@ -24,9 +24,9 @@ const QueryInput = ({ query, setQuery, onAnalyze, loading }) => {
           placeholder="Enter your SQL query here..."
         />
       </div>
-      <div className="button-container">
+      <div className="flex justify-end">
         <button
-          className="analyze-button"
+          className="bg-purple-400 text-black px-6 py-3 text-base font-semibold rounded cursor-pointer hover:opacity-90 active:scale-95 disabled:bg-gray-700 disabled:cursor-not-allowed transition-all"
           onClick={onAnalyze}
           disabled={loading || !query.trim()}
         >

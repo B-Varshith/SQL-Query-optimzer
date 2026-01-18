@@ -1,0 +1,190 @@
+
+> server@1.0.0 test
+> jest tests/auth_flow.test.js
+
+  console.log
+    [dotenv@17.2.1] injecting env (5) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  console.log
+    [dotenv@17.2.1] injecting env (0) from .env -- tip: 📡 observe env with Radar: https://dotenvx.com/radar
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  console.log
+    [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  console.log
+    [dotenv@17.2.1] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+
+      at _log (node_modules/dotenv/lib/main.js:139:11)
+
+  console.error
+    Signup error: error: column "username" does not exist
+        at C:\Users\bvars\OneDrive\Desktop\Projects\PostgreSQL Query Optimizer\server\node_modules\pg-pool\index.js:45:11
+        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at signup (C:\Users\bvars\OneDrive\Desktop\Projects\PostgreSQL Query Optimizer\server\src\controllers\authController.js:15:27) {
+      length: 108,
+      severity: 'ERROR',
+      code: '42703',
+      detail: undefined,
+      hint: undefined,
+      position: '27',
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: undefined,
+      table: undefined,
+      column: undefined,
+      dataType: undefined,
+      constraint: undefined,
+      file: 'parse_relation.c',
+      line: '3666',
+      routine: 'errorMissingColumn'
+    }
+
+    [0m [90m 35 |[39m         res[33m.[39mstatus([35m201[39m)[33m.[39mjson({ message[33m:[39m [32m'User created successfully'[39m[33m,[39m user[33m,[39m token })[33m;[39m
+     [90m 36 |[39m     } [36mcatch[39m (err) {
+    [31m[1m>[22m[39m[90m 37 |[39m         console[33m.[39merror([32m'Signup error:'[39m[33m,[39m err)[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 38 |[39m         res[33m.[39mstatus([35m500[39m)[33m.[39mjson({ error[33m:[39m [32m'Server error during signup'[39m })[33m;[39m
+     [90m 39 |[39m     }
+     [90m 40 |[39m }[33m;[39m[0m
+
+      at error (src/controllers/authController.js:37:17)
+
+  console.error
+    Login error: error: column "username" does not exist
+        at C:\Users\bvars\OneDrive\Desktop\Projects\PostgreSQL Query Optimizer\server\node_modules\pg-pool\index.js:45:11
+        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at login (C:\Users\bvars\OneDrive\Desktop\Projects\PostgreSQL Query Optimizer\server\src\controllers\authController.js:50:24) {
+      length: 108,
+      severity: 'ERROR',
+      code: '42703',
+      detail: undefined,
+      hint: undefined,
+      position: '27',
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: undefined,
+      table: undefined,
+      column: undefined,
+      dataType: undefined,
+      constraint: undefined,
+      file: 'parse_relation.c',
+      line: '3666',
+      routine: 'errorMissingColumn'
+    }
+
+    [0m [90m 65 |[39m         res[33m.[39mjson({ message[33m:[39m [32m'Login successful'[39m[33m,[39m user[33m:[39m { id[33m:[39m user[33m.[39mid[33m,[39m username[33m:[39m user[33m.[39musername }[33m,[39m token })[33m;[39m
+     [90m 66 |[39m     } [36mcatch[39m (err) {
+    [31m[1m>[22m[39m[90m 67 |[39m         console[33m.[39merror([32m'Login error:'[39m[33m,[39m err)[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 68 |[39m         res[33m.[39mstatus([35m500[39m)[33m.[39mjson({ error[33m:[39m [32m'Server error during login'[39m })[33m;[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m }[33m;[39m[0m
+
+      at error (src/controllers/authController.js:67:17)
+
+FAIL tests/auth_flow.test.js
+  Auth and Credential Flow
+    × should signup a new user (149 ms)
+    × should login the user (83 ms)
+    × should add a database credential (7 ms)
+    × should get credentials list (6 ms)
+    × should delete the credential (6 ms)
+
+  ● Auth and Credential Flow › should signup a new user
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 201
+    Received: 500
+
+    [0m [90m 33 |[39m             [33m.[39msend(testUser)[33m;[39m
+     [90m 34 |[39m
+    [31m[1m>[22m[39m[90m 35 |[39m         expect(res[33m.[39mstatusCode)[33m.[39mtoEqual([35m201[39m)[33m;[39m
+     [90m    |[39m                                [31m[1m^[22m[39m
+     [90m 36 |[39m         expect(res[33m.[39mbody)[33m.[39mtoHaveProperty([32m'token'[39m)[33m;[39m
+     [90m 37 |[39m         expect(res[33m.[39mbody[33m.[39muser)[33m.[39mtoHaveProperty([32m'username'[39m[33m,[39m testUser[33m.[39musername)[33m;[39m
+     [90m 38 |[39m         token [33m=[39m res[33m.[39mbody[33m.[39mtoken[33m;[39m[0m
+
+      at Object.toEqual (tests/auth_flow.test.js:35:32)
+
+  ● Auth and Credential Flow › should login the user
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 200
+    Received: 500
+
+    [0m [90m 45 |[39m             [33m.[39msend(testUser)[33m;[39m
+     [90m 46 |[39m
+    [31m[1m>[22m[39m[90m 47 |[39m         expect(res[33m.[39mstatusCode)[33m.[39mtoEqual([35m200[39m)[33m;[39m
+     [90m    |[39m                                [31m[1m^[22m[39m
+     [90m 48 |[39m         expect(res[33m.[39mbody)[33m.[39mtoHaveProperty([32m'token'[39m)[33m;[39m
+     [90m 49 |[39m         token [33m=[39m res[33m.[39mbody[33m.[39mtoken[33m;[39m [90m// Refresh token just in case[39m
+     [90m 50 |[39m     })[33m;[39m[0m
+
+      at Object.toEqual (tests/auth_flow.test.js:47:32)
+
+  ● Auth and Credential Flow › should add a database credential
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 201
+    Received: 403
+
+    [0m [90m 56 |[39m             [33m.[39msend(testCredential)[33m;[39m
+     [90m 57 |[39m
+    [31m[1m>[22m[39m[90m 58 |[39m         expect(res[33m.[39mstatusCode)[33m.[39mtoEqual([35m201[39m)[33m;[39m
+     [90m    |[39m                                [31m[1m^[22m[39m
+     [90m 59 |[39m         expect(res[33m.[39mbody)[33m.[39mtoHaveProperty([32m'id'[39m)[33m;[39m
+     [90m 60 |[39m         expect(res[33m.[39mbody[33m.[39mconnection_name)[33m.[39mtoEqual(testCredential[33m.[39mconnection_name)[33m;[39m
+     [90m 61 |[39m         credentialId [33m=[39m res[33m.[39mbody[33m.[39mid[33m;[39m[0m
+
+      at Object.toEqual (tests/auth_flow.test.js:58:32)
+
+  ● Auth and Credential Flow › should get credentials list
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 200
+    Received: 403
+
+    [0m [90m 67 |[39m             [33m.[39m[36mset[39m([32m'Authorization'[39m[33m,[39m [32m`Bearer ${token}`[39m)[33m;[39m
+     [90m 68 |[39m
+    [31m[1m>[22m[39m[90m 69 |[39m         expect(res[33m.[39mstatusCode)[33m.[39mtoEqual([35m200[39m)[33m;[39m
+     [90m    |[39m                                [31m[1m^[22m[39m
+     [90m 70 |[39m         expect([33mArray[39m[33m.[39misArray(res[33m.[39mbody))[33m.[39mtoBeTruthy()[33m;[39m
+     [90m 71 |[39m         expect(res[33m.[39mbody[33m.[39mlength)[33m.[39mtoBeGreaterThan([35m0[39m)[33m;[39m
+     [90m 72 |[39m         expect(res[33m.[39mbody[[35m0[39m][33m.[39mid)[33m.[39mtoEqual(credentialId)[33m;[39m[0m
+
+      at Object.toEqual (tests/auth_flow.test.js:69:32)
+
+  ● Auth and Credential Flow › should delete the credential
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 200
+    Received: 403
+
+    [0m [90m 78 |[39m             [33m.[39m[36mset[39m([32m'Authorization'[39m[33m,[39m [32m`Bearer ${token}`[39m)[33m;[39m
+     [90m 79 |[39m
+    [31m[1m>[22m[39m[90m 80 |[39m         expect(res[33m.[39mstatusCode)[33m.[39mtoEqual([35m200[39m)[33m;[39m
+     [90m    |[39m                                [31m[1m^[22m[39m
+     [90m 81 |[39m         expect(res[33m.[39mbody)[33m.[39mtoHaveProperty([32m'message'[39m[33m,[39m [32m'Credential deleted successfully'[39m)[33m;[39m
+     [90m 82 |[39m     })[33m;[39m
+     [90m 83 |[39m })[33m;[39m[0m
+
+      at Object.toEqual (tests/auth_flow.test.js:80:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        1.129 s, estimated 2 s
+Ran all test suites matching tests/auth_flow.test.js.
