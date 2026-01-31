@@ -14,13 +14,13 @@ This tool allows developers and database administrators to paste a SQL query, ex
 -   **Modern UI**: Dark mode interface with syntax highlighting for SQL.
 -   **Environment-Based Configuration**: Uses `.env` files for secure management of database credentials.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 -   **Frontend**: React.js, Vite, `react-simple-code-editor`, `prismjs`, `react-json-view`
 -   **Backend**: Node.js, Express.js, `pg` (node-postgres)
 -   **Testing**: Jest, Supertest
 
-## 📂 Project Structure
+##  Project Structure
 
 -   `/client`: The React frontend (Vite).
     -   `src/components`: Reusable UI components (`QueryInput`, `QueryResults`).
@@ -30,12 +30,12 @@ This tool allows developers and database administrators to paste a SQL query, ex
     -   `src/middleware`: Error handling and other middleware.
     -   `tests`: Integration tests.
 
-## 🔒 Security
+##  Security
 
 To ensure safety when running arbitrary queries:
 -   **Transaction Rollback**: Every analysis request is wrapped in a database transaction (`BEGIN` ... `ROLLBACK`). This ensures that even if a user submits an `INSERT`, `UPDATE`, or `DELETE` query, the changes are **never committed** to the database.
 
-## ⚙️ Local Setup
+## Local Setup
 
 1.  **Clone the repository.**
 2.  **Setup Backend**:
@@ -54,7 +54,7 @@ To ensure safety when running arbitrary queries:
     -   **Backend**: `cd server && npm run dev`
     -   **Frontend**: `cd client && npm run dev`
 
-## 🧪 Running Tests
+##  Running Tests
 
 To run the backend integration tests:
 
